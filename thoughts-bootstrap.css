@@ -1,0 +1,120 @@
+.ng-combobox {
+    cursor: default;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 11px;
+    margin-bottom: 0px;
+    max-height: 350px;
+}
+
+.ng-combobox .btn {
+    background: #5ea1c8;
+    color: white;
+}
+
+.ng-combobox .btn,
+.ng-combobox .form-control {
+    border: 1px solid #a0a0a0;
+    height: 28px;
+}
+
+.ng-combobox .glyphicon-spin {
+    -webkit-animation: spin 800ms infinite linear;
+    animation: spin 800ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ng-combobox > input {
+    color: black;
+    font: 12px Tahoma, Geneva, sans-serif;
+}
+
+.ng-combobox > .input-group-btn > .btn > .glyphicon {
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    top: 0px;
+}
+
+.ng-combobox > table {
+    border: 1px solid #ddd;
+}
+
+.ng-combobox > table > tbody > tr:hover {
+    background-color: #ff9460;
+    color: white;
+}
+
+.ng-combobox > table > thead > tr {
+    margin-top: -1px;
+}
+
+.ng-combobox > table > thead > tr > th {
+    background-color: #969696;
+    color: white;
+    cursor: default;
+    padding: 3px 0px 3px 5px;
+}
+
+.ng-combobox > table > tbody > tr > td {
+    padding: 1.5px 0px 1.5px 5px;
+}
+
+.ng-combobox > table > thead > tr > th,
+.ng-combobox > table > tbody > tr > th,
+.ng-combobox > table > tfoot > tr > th,
+.ng-combobox > table > thead > tr > td,
+.ng-combobox > table > tbody > tr > td,
+.ng-combobox > table > tfoot > tr > td {
+    border: 1px solid #ddd;
+    font-size: 11.5px;
+    font-weight: normal;
+}
+
+.ng-combobox-popup {
+    padding: 0px 0px;
+}
+
+.ng-combobox-popup.dropdown-menu {
+    display: block;
+    float: none;
+    margin: 0px;
+}
+
+.thoughts-position-measure {
+    display: block !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
+.thoughts-position-scrollbar-measure {
+    position: absolute !important;
+    top: -9999px !important;
+    width: 50px !important;
+    height: 50px !important;
+    overflow: scroll !important;
+}
+
+.thoughts-position-body-scrollbar-measure {
+    overflow: scroll !important;
+}
