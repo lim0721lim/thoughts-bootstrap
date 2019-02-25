@@ -544,7 +544,7 @@ function ($attrs, $compile, $document, $element, $filter, $parse, $position, $q,
             function positionPopup() {
                 var popupElement = getPopupElement();
                 if (_this.isPopup) {
-                    var position = $position.positionElements($element, popupElement, 'auto bottom-left', false);
+                    var position = $position.positionElements($element, popupElement, 'auto bottom-left', $scope.popupAppendToBody);
                     popupElement.css({ top: position.top + 'px', left: position.left + 'px' });
                     popupElement.removeClass('thoughts-position-measure');
                 } else {
@@ -578,7 +578,11 @@ function ($attrs, $compile, $document, $element, $filter, $parse, $position, $q,
             placeholder: $attrs.placeholder
         }));
         popupElement.remove();
-        $element.after($popup);
+        if ($scope.popupAppendToBody) {
+            $document.find('body').append($popup);
+        } else {
+            $element.after($popup);
+        }
     }
 
     this.initialize = function (ngModelController) {
@@ -614,7 +618,8 @@ function ($scope, $element, $attrs, $compile) {
             onInit: '&?',
             onReloaded: '&?',
             onSelectedIndexChanged: '&?',
-            onValueChanged: '&?'
+            onValueChanged: '&?',
+            popupAppendToBody: '=?'
         },
         templateUrl: function (element, attrs) {
             return 'thoughts/template/ngCombobox/ngCombobox.html';
@@ -1252,7 +1257,7 @@ angular.module('thoughts.bootstrap.ngCombobox.ngComboboxGetApiData', [])
             conditions.forEach(function (condition, index, arr) {
                 switch (condition.comparisonOperator) {
                     case 'contains':
-                        filter += 'contains(' + condition.columnName + ', \'' + condition.value + '\')';
+                        filter += 'contains(tolower(' + condition.columnName + '), tolower(\'' + condition.value + '\'))';
                         break;
                     default:
                         filter += condition.columnName + ' ' + condition.comparisonOperator + ' ' + (condition.value !== null ? condition.columnType === 'string' ? '\'' + condition.value + '\'' : condition.value : null);
@@ -1342,14 +1347,14 @@ angular.module('thoughts/template/ngCombobox/ngComboboxPopupContent.html', []).r
         "             <table>\n" +
         "                 <thead ng-if=\"::adapter.getParameters().captions.length > 0\">\n" +
         "                     <tr>\n" +
-        "                         <th ng-repeat=\"caption in ::adapter.getParameters().captions track by $index\" style=\"min-width: 300px\">\n" +
+        "                         <th ng-repeat=\"caption in ::adapter.getParameters().captions track by $index\">\n" +
         "                             {{::caption}}\n" +
         "                         </th>\n" +
         "                     </tr>\n" +
         "                 </thead>\n" +
         "                 <tbody>\n" +
         "                     <tr ui-scroll=\"item in dataSource\" adapter=\"popupAdapter\" buffer-size=\"30\" is-loading=\"adapter.isLoading\" row-index=\"{{::item.$index}}\" ng-click=\"adapter.onRowSelected(item)\" ng-style=\"item.$index === adapter.selectedRow.index && { 'background-color': '#d3d3d3' }\">\n" +
-        "                         <td ng-repeat=\"field in ::adapter.getVisibleFields() track by $index\" style=\"height: 17px; min-width: 300px;\">\n" +
+        "                         <td ng-repeat=\"field in ::adapter.getVisibleFields() track by $index\" style=\"height: 17px;\">\n" +
         "                             <font ng-bind-html=\"adapter.highlightText(adapter.formatText(item[field.name], field.type), field.type, adapter.getSearchText())\"></font>\n" +
         "                         </td>\n" +
         "                     </tr>\n" +
