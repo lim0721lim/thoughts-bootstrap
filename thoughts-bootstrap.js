@@ -185,7 +185,7 @@ function ($attrs, $compile, $document, $element, $filter, $parse, $position, $q,
             _this.highlightText = function (text, type, search) {
                 var _text = (text !== null && typeof text !== 'string' ? angular.toJson(text) : text);
                 if (search && type === 'string') {
-                    return $sce.trustAsHtml(_text.replace(new RegExp(search, 'gi'), '<span style="background-color: yellow">$&</span>'));
+                    return $sce.trustAsHtml(_text.replace(new RegExp(search, 'gi'), '<b style="background-color: #ff9460; color: black;">$&</b>'));
                 }
                 return $sce.trustAsHtml(_text);
             }
