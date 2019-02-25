@@ -71,10 +71,14 @@
     background-color: #969696;
     color: white;
     cursor: default;
+    min-width: 300px;
     padding: 3px 0px 3px 5px;
+    position: sticky;
+    top: 0;
 }
 
 .ng-combobox > table > tbody > tr > td {
+    min-width: 300px;
     padding: 1.5px 0px 1.5px 5px;
 }
 
